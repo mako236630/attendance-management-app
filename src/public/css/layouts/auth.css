@@ -14,6 +14,10 @@ body {
     width: 400px;
 }
 
+.container {
+    max-width: 1540px;
+}
+
 @media screen and (max-width: 860px) {
 
     body {
@@ -30,5 +34,9 @@ body {
 
     .header_logo img {
         width: 300px;
+    }
+
+    .container {
+        max-width: 860px;
     }
 }
