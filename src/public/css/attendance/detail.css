@@ -125,6 +125,13 @@ textarea {
     cursor: pointer;
 }
 
+.error {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-bottom: 15px;
+    min-height: 18px;
+}
+
 @media screen and (max-width: 860px) {
     .attendance__detail-container {
         max-width: 900px;
@@ -251,5 +258,12 @@ textarea {
         border: 1px solid #c3c1c1;
         border-radius: 3px;
         cursor: pointer;
+    }
+
+    .error {
+        color: #ff4d4f;
+        font-size: 12px;
+        margin-bottom: 15px;
+        min-height: 18px;
     }
 }

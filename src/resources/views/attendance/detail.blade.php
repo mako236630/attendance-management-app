@@ -34,7 +34,8 @@
                         @if ($attendance->status === 1)
                             <span class="if__in-at">{{ date('H:i', strtotime($attendance->requested_in_at)) }}</span>
                             <span class="range-tilde">～</span>
-                            <span class="if__out-at">{{ $attendance->requested_out_at ? date('H:i', strtotime($attendance->requested_out_at)) : '' }}<span>
+                            <span
+                                class="if__out-at">{{ $attendance->requested_out_at ? date('H:i', strtotime($attendance->requested_out_at)) : '' }}<span>
                     </td>
                 @else
                     <input type="time" name="in_time"
@@ -42,6 +43,12 @@
                     <span class="range-tilde">～</span>
                     <input type="time" name="out_time"
                         value="{{ old('out_time', \Carbon\Carbon::parse($attendance->punched_out_at)->format('H:i')) }}">
+
+                    <div class="error">
+                        @error('time_error')
+                            <p class="error-message">{{ $message }}</p>
+                        @enderror
+                    </div>
                     @endif
                     </td>
                 </tr>
@@ -61,10 +68,19 @@
                                 <span class="range-tilde">～</span>
                                 <span>{{ $rest->requested_out_at ? date('H:i', strtotime($rest->requested_out_at)) : '' }}</span>
                             @else
-                                <input type="time" name="rests[{{ $rest->id }}][in]" value="{{ $rest->view_in }}">
+                                <input type="time" name="rests[{{ $rest->id }}][in]" value="{{ old("rests.{$rest->id}.in", $rest->view_in) }}">
                                 <span class="range-tilde">～</span>
                                 <input type="time" name="rests[{{ $rest->id }}][out]"
-                                    value="{{ $rest->view_out }}">
+                                    value="{{ old("rests.{$rest->id}.out", $rest->view_out) }}">
+
+                                <div class="error">
+                                    @error("rests.{$rest->id}.in")
+                                        <p class="error-message">{{ $message }}</p>
+                                    @enderror
+                                    @error("rests.{$rest->id}.out")
+                                        <p class="error-message">{{ $message }}</p>
+                                    @enderror
+                                </div>
                             @endif
                         </td>
                     </tr>
@@ -76,11 +92,18 @@
                         @if ($attendance->status === 1)
                             {{ $attendance->note }}
                         @else
-                            <textarea name="note" rows="4"></textarea>
+                            <textarea name="note" rows="4">{{ old('note', $attendance->note) }}</textarea>
+
+                            <div class="error">
+                                @error('note')
+                                    <p class="error-message">{{ $message }}</p>
+                                @enderror
+                            </div>
                         @endif
                     </td>
                 </tr>
             </table>
+
             <div class="update__button-conteinar">
                 @if ($attendance->status === 1)
                     <p class="status__waiting">*承認待ちのため修正はできません。</p>

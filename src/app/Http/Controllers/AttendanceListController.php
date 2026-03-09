@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DetailRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Attendance;
@@ -40,7 +41,7 @@ class AttendanceListController extends Controller
         return view("attendance.detail", compact('attendance'));
     }
 
-    public function updateRequest(Request $request, $id)
+    public function updateRequest(DetailRequest $request, $id)
     {
         $attendance = Attendance::findOrFail($id);
 
