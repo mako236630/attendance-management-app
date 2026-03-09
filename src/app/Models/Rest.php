@@ -17,6 +17,11 @@ class Rest extends Model
         'requested_out_at',
     ];
 
+    protected $casts = [
+        'punched_in_at' => 'datetime',
+        'punched_out_at' => 'datetime',
+    ];
+
     public function Attendance()
     {
         return $this->belongsTo(Attendance::class);

@@ -11,7 +11,7 @@
             <div class="text">
 
                 <div class="litle">
-                    <h1>ログイン</h1>
+                    <h1>管理者ログイン</h1>
                 </div>
 
                 <div class="error">
@@ -41,11 +41,7 @@
                 </div>
 
                 <div class="button">
-                    <button type="submit">ログインする</button>
-                </div>
-
-                <div class="register">
-                    <a href="{{ route('register') }}">会員登録はこちら</a>
+                    <button type="submit">管理者ログインする</button>
                 </div>
             </div>
         </div>

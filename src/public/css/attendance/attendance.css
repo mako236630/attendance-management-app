@@ -1,0 +1,188 @@
+.attendance__display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.time__display {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#real-time-date {
+    font-size: 50px;
+    margin: 0;
+}
+
+#real-time-clock {
+    font-size: 90px;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 70px;
+}
+
+.attendance__status {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+button,
+a {
+    cursor: pointer;
+}
+
+.button__is-working,
+.button__is-off {
+    border-radius: 20px;
+    padding: 15px 70px;
+    font-size: 30px;
+    letter-spacing: 0.2em;
+}
+
+.attendance__button {
+    display: flex;
+    gap: 70px;
+}
+
+.attendance__button button {
+    margin: 0 40px;
+}
+
+.button__is-break,
+.button__is-breakout {
+    border-radius: 20px;
+    padding: 15px 55px;
+    font-size: 30px;
+    background-color: white;
+    color: black;
+    letter-spacing: 0.2em;
+}
+
+.status__is-off,
+.status__is-working,
+.status__is-break,
+.status__is-off {
+    border: 1px solid #D3D3D3;
+    background-color: #D3D3D3;
+    color: gray;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 50px;
+    gap: 30px;
+}
+
+.work__out {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.work__out-message {
+    margin: 0;
+    width: auto;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 860px) {
+
+    .attendance__display {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .time__display {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #real-time-date {
+        font-size: 30px;
+        margin: 0;
+    }
+
+    #real-time-clock {
+        font-size: 60px;
+        font-weight: bold;
+        margin: 0;
+        padding-bottom: 70px;
+    }
+
+    .attendance__status {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: 100px;
+    }
+
+    button,
+    a {
+        cursor: pointer;
+    }
+
+    .button__is-working,
+    .button__is-off {
+        border-radius: 20px;
+        padding: 15px 70px;
+        font-size: 30px;
+        letter-spacing: 0.2em;
+    }
+
+    .attendance__button {
+        display: flex;
+        gap: 70px;
+    }
+
+    .attendance__button button {
+        margin: 0 40px;
+    }
+
+    .button__is-break,
+    .button__is-breakout {
+        border-radius: 20px;
+        padding: 15px 55px;
+        font-size: 30px;
+        background-color: white;
+        color: black;
+        letter-spacing: 0.2em;
+    }
+
+    .status__is-off,
+    .status__is-working,
+    .status__is-break,
+    .status__is-off {
+        border: 1px solid #D3D3D3;
+        background-color: #D3D3D3;
+        color: gray;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 50px;
+        gap: 30px;
+    }
+
+    .work__out {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+    }
+
+    .work__out-message {
+        margin: 0;
+        width: auto;
+        font-size: 20px;
+        font-weight: bold;
+    }
+}
