@@ -1,9 +1,8 @@
-.attendance-container {
+.admin__list-container {
     max-width: 900px;
     margin: 40px auto;
     padding: 0 20px;
 }
-
 
 h1 {
     font-size: 30px;
@@ -12,8 +11,7 @@ h1 {
     border-left: 4px solid #000;
 }
 
-
-.month-stepper {
+.prev__next {
     background: #fff;
     display: flex;
     justify-content: space-between;
@@ -23,14 +21,14 @@ h1 {
     margin-bottom: 30px;
 }
 
-.month-stepper a {
+.prev__next a {
     color: #888;
     text-decoration: none;
     font-size: 15px;
     font-weight: bold;
 }
 
-.month-stepper span {
+.prev__next span {
     font-size: 18px;
     font-weight: bold;
     display: flex;
@@ -38,7 +36,7 @@ h1 {
     gap: 10px;
 }
 
-.attendance-table {
+.admin__list-table {
     width: 100%;
     border-collapse: collapse;
     background: #fff;
@@ -46,7 +44,7 @@ h1 {
     overflow: hidden;
 }
 
-.attendance-table th {
+.admin__list-table th {
     background-color: #fff;
     color: #888;
     font-weight: bold;
@@ -55,7 +53,7 @@ h1 {
     font-size: 14px;
 }
 
-.attendance-table td {
+.admin__list-table td {
     padding: 15px;
     height: 20px;
     vertical-align: middle;
@@ -66,24 +64,22 @@ h1 {
     font-weight: bold;
 }
 
-.attendance-table a {
+.admin__list-table a {
     color: #000;
     text-decoration: none;
     font-weight: bold;
 }
 
-.attendance-table a:hover {
+.admin__list-table a:hover {
     text-decoration: underline;
 }
 
 @media screen and (max-width: 860px) {
-
-    .attendance-container {
+    .admin__list-container {
         max-width: 700px;
         margin: 40px auto;
         padding: 0 20px;
     }
-
 
     h1 {
         font-size: 20px;
@@ -92,8 +88,7 @@ h1 {
         border-left: 4px solid #000;
     }
 
-
-    .month-stepper {
+    .prev__next {
         background: #fff;
         display: flex;
         justify-content: space-between;
@@ -103,14 +98,14 @@ h1 {
         margin-bottom: 30px;
     }
 
-    .month-stepper a {
+    .prev__next a {
         color: #888;
         text-decoration: none;
         font-size: 15px;
         font-weight: bold;
     }
 
-    .month-stepper span {
+    .prev__next span {
         font-size: 18px;
         font-weight: bold;
         display: flex;
@@ -118,7 +113,7 @@ h1 {
         gap: 10px;
     }
 
-    .attendance-table {
+    .admin__list-table {
         width: 100%;
         border-collapse: collapse;
         background: #fff;
@@ -126,7 +121,7 @@ h1 {
         overflow: hidden;
     }
 
-    .attendance-table th {
+    .admin__list-table th {
         background-color: #fff;
         color: #888;
         font-weight: bold;
@@ -135,8 +130,10 @@ h1 {
         font-size: 14px;
     }
 
-    .attendance-table td {
+    .admin__list-table td {
         padding: 15px;
+        height: 20px;
+        vertical-align: middle;
         border-bottom: 1px solid #f0f0f0;
         text-align: center;
         font-size: 15px;
@@ -144,14 +141,13 @@ h1 {
         font-weight: bold;
     }
 
-
-    .attendance-table a {
+    .admin__list-table a {
         color: #000;
         text-decoration: none;
         font-weight: bold;
     }
 
-    .attendance-table a:hover {
+    .admin__list-table a:hover {
         text-decoration: underline;
     }
 }

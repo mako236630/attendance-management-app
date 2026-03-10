@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -56,11 +58,46 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = \App\Models\User::where('email', $request->email)->first();
+
+            if ($user && Hash::check($request->password, $user->password)) {
+
+                // 一般ログイン画面からログインをする場合、user->is_adminが1（管理者）は入れない
+                if (!$request->is('admin/login*') && $user->is_admin === 1) {
+                    return null;
+                }
+
+                // 管理者ログイン画面からログインをする場合、user->is_adminが1以外（一般ユーザー）は入れない
+                if ($request->is('admin/login*') && $user->is_admin !== 1) {
+                    return null;
+                }
+
+                return $user;
+            }
+
+            return null;
+        });
+
         $this->app->instance(LogoutResponse::class, new class implements LogoutResponse {
             public function toResponse($request)
             {
                 return redirect('/login');
             }
         });
+
+        $this->app->instance(LoginResponse::class, new class implements LoginResponse {
+            public function toResponse($request)
+            {
+                $user = Auth::user();
+
+                if ($user->is_admin === 1) {
+                    return redirect()->route('admin.list');
+                }
+
+                return redirect()->route('attendance.index');
+            }
+        });
+
     }
 }

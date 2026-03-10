@@ -4,7 +4,7 @@
 @endsection
 @section('content')
 
-    <form action="{{ route('login') }}" method="post" novalidate>
+    <form action="/admin/login" method="post" novalidate>
         @csrf
 
         <div class="login">
