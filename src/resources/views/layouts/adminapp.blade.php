@@ -20,14 +20,14 @@
             <a href="{{ route('admin.list') }}">
                 <button type="submit">勤怠一覧</button>
             </a>
-            <a href="{{ route('attendance.list') }}">
+            <a href="{{ route('staff.list') }}">
                 <button type="submit">スタッフ一覧</button>
             </a>
             <a href="{{ route('requestlist.index') }}">
                 <button type="submit">申請一覧</button>
             </a>
 
-            <form action="{{ route('admin.login') }}" method="post">
+            <form action="{{ route('admin.logout') }}" method="POST">
                 @csrf
                 <button type="submit">ログアウト</button>
             </form>
