@@ -35,7 +35,7 @@
                 @for ($date = $startDate->copy(); $date <= $endDate; $date->addDay())
                     @php
                         $attendance = $attendances->first(function ($item) use ($date) {
-                            return \Carbon\Carbon::parse($item->created_at)->isSameDay($date);
+                            return \Carbon\Carbon::parse($item->punched_in_at)->isSameDay($date);
                         });
 
                         $totalRestMinutes = 0;

@@ -12,7 +12,7 @@ class AttendanceListController extends Controller
 {
     public function index(Request $request)
     {
-        $displayMonth = $request->input('display_month', date('Y-m'));
+        $displayMonth = $request->input('display_month', now()->format('Y-m'));
         $date = \Carbon\Carbon::parse($displayMonth);
 
         $prevMonth = $date->copy()->subMonth()->format('Y-m');
@@ -20,8 +20,8 @@ class AttendanceListController extends Controller
 
         $attendances = Attendance::with('rests')
             ->where('user_id', Auth::id())
-            ->whereYear('created_at', $date->year)
-            ->whereMonth('created_at', $date->month)
+            ->whereYear('punched_in_at', $date->year)
+            ->whereMonth('punched_in_at', $date->month)
             ->get();
 
         return view('attendance.list', compact('attendances', 'displayMonth', 'prevMonth', 'nextMonth'));
