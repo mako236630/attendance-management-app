@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Str;
 use Laravel\Fortify\Fortify;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Contracts\LoginResponse;
 use Laravel\Fortify\Contracts\LogoutResponse;
 use Illuminate\Support\Facades\Auth;
@@ -50,7 +51,7 @@ class FortifyServiceProvider extends ServiceProvider
             return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
-        Fortify::registerView(function() {
+        Fortify::registerView(function () {
             return view('auth.register');
         });
 
@@ -95,13 +96,22 @@ class FortifyServiceProvider extends ServiceProvider
                     return redirect()->route('admin.list');
                 }
 
+                if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail()) {
+                    return redirect('/email/verify');
+                }
+
                 return redirect()->route('attendance.index');
             }
         });
 
-        Fortify::verifyEmailView(function () {
-            return view('auth.verify-email');
-        });
-
+        $this->app->instance(
+            RegisterResponse::class,
+            new class implements RegisterResponse {
+                public function toResponse($request)
+                {
+                    return redirect('/email/verify');
+                }
+            }
+        );
     }
 }

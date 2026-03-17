@@ -17,8 +17,8 @@
         </div>
 
         <div class="time__display">
-            <p id="real-time-date"></p>
-            <p id="real-time-clock"></p>
+            <p id="real-time-date">{{ now()->isoFormat('YYYY年M月D日(ddd)') }}</p>
+            <p id="real-time-clock">{{ now()->format('H:i') }}</p>
         </div>
 
         <div class="attendance__button">

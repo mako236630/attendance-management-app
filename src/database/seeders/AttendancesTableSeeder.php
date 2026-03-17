@@ -62,30 +62,12 @@ class AttendancesTableSeeder extends Seeder
                 'requested_out_at' => $yesterday->format('Y-m-d') . ' 13:00:00',
             ]);
 
-            $today = Carbon::today();
-            $atd2 = Attendance::create([
-                'user_id' => $user->id,
-                'status'  => 1,
-                'punched_in_at'   => $today->format('Y-m-d') . ' 09:00:00',
-                'punched_out_at'  => $today->format('Y-m-d') . ' 18:00:00',
-                'requested_in_at' => $today->format('Y-m-d') . ' 09:00:00',
-                'requested_out_at' => $today->format('Y-m-d') . ' 18:00:00',
-                'note' => '休憩時間変更',
-                'created_at' => $today,
-            ]);
             Rest::create([
-                'attendance_id' => $atd2->id,
-                'rest_in_at' => $today->format('Y-m-d') . ' 12:00:00',
-                'rest_out_at' => $today->format('Y-m-d') . ' 13:00:00',
-                'requested_in_at' => $today->format('Y-m-d') . ' 15:00:00',
-                'requested_out_at' => $today->format('Y-m-d') . ' 16:00:00',
-            ]);
-            Rest::create([
-                'attendance_id' => $atd2->id,
-                'rest_in_at' => $today->format('Y-m-d') . ' 15:00:00',
-                'rest_out_at' => $today->format('Y-m-d') . ' 16:00:00',
-                'requested_in_at' => $today->format('Y-m-d') . ' 17:00:00',
-                'requested_out_at' => $today->format('Y-m-d') . ' 17:30:00',
+                'attendance_id' => $atd1->id,
+                'rest_in_at' => $yesterday->format('Y-m-d') . ' 15:00:00',
+                'rest_out_at' => $yesterday->format('Y-m-d') . ' 16:00:00',
+                'requested_in_at' => $yesterday->format('Y-m-d') . ' 17:00:00',
+                'requested_out_at' => $yesterday->format('Y-m-d') . ' 17:30:00',
             ]);
         }
     }
