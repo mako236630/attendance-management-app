@@ -17,6 +17,15 @@
         </div>
 
         <div class="header__nav">
+            @auth
+        @if (isset($status) && $status === '退勤済')
+           <a href="{{ route('attendance.list') }}">
+                <button type="submit">今月の出勤一覧</button>
+            </a>
+            <a href="{{ route('requestlist.index') }}">
+                <button type="submit">申請一覧</button>
+            </a>
+        @else
             <a href="{{ route('attendance.index') }}">
                 <button type="submit">勤怠</button>
             </a>
@@ -26,11 +35,12 @@
             <a href="{{ route('requestlist.index') }}">
                 <button type="submit">申請</button>
             </a>
-
+        @endif
             <form action="{{ route('logout') }}" method="post">
                 @csrf
                 <button type="submit">ログアウト</button>
             </form>
+            @endauth
         </div>
 
     </header>

@@ -24,7 +24,7 @@ class AdminattendancelistController extends Controller
         $nextDate = $displayDate->copy()->addDay()->format('Y-m-d');
 
         $attendances = Attendance::with(['user', 'rests'])
-            ->whereDate('created_at', $displayDate->format('Y-m-d'))
+            ->whereDate('punched_in_at', $displayDate->format('Y-m-d'))
             ->get();
 
         return view("admin.list", compact('displaytime','attendances', 'displayDate', 'prevDate', 'nextDate'));

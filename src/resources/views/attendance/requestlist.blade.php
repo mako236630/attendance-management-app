@@ -40,7 +40,7 @@
                             <tr>
                                 <td>{{ $attendance->status == 1 ? '承認待ち' : '承認済み' }}</td>
                                 <td>{{ $attendance->user->name }}</td>
-                                <td>{{ $attendance->created_at->format('Y/m/d') }}</td>
+                                <td>{{ \Carbon\Carbon::parse($attendance->punched_in_at)->format('Y/m/d') }}</td>
                                 <td>{{ $attendance->note }}</td>
                                 <td>{{ $attendance->updated_at->format('Y/m/d') }}</td>
                                 <td><a href="{{ route('attendance.show', ['id' => $attendance->id]) }}">詳細</a></td>

@@ -94,7 +94,7 @@
                     <tr>
                         <th>休憩</th>
                         <td>
-                            @if ($attendance->status == 1 || $attendance->status == 2)
+                            @if ($attendance->status == 1)
                                 <span>なし</span>
                             @else
                                 <input type="time" name="new_rest_in" value="00:00">

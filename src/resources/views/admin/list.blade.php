@@ -7,7 +7,7 @@
 @section('content')
     <div class="admin__list-container">
 
-        <h1>{{ $displaytime->format('Y年m月d日') }}の勤怠</h1>
+        <h1>{{ $displaytime->format('Y年n月j日') }}の勤怠</h1>
 
         <div class="prev__next">
             <a href="{{ route('admin.list', ['date' => $prevDate]) }}">← 前日</a>
@@ -42,7 +42,6 @@
                     $start = \Carbon\Carbon::parse($attendance->punched_in_at);
                     $end = $attendance->punched_out_at ? \Carbon\Carbon::parse($attendance->punched_out_at) : null;
 
-                    // 2. 休憩時間の合計（分）を計算
                     $totalRestMinutes = 0;
                     foreach ($attendance->rests as $rest) {
                     if ($rest->rest_in_at && $rest->rest_out_at) {
