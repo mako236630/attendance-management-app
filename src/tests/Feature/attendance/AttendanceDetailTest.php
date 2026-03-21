@@ -146,7 +146,7 @@ class AttendanceDetailTest extends TestCase
 
         $response->assertStatus(302);
         $response->assertSessionHasErrors([
-            "time_error" => "出勤時間が不適切な値です"
+            "time_error" => "出勤時間もしくは退勤時間が不適切な値です"
         ]);
     }
 

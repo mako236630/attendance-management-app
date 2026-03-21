@@ -43,21 +43,18 @@ class AdminstafflistController extends Controller
         $start = $displayMonth->copy()->startOfMonth();
         $end = $displayMonth->copy()->endOfMonth();
 
-        // 1. データを取得
         $attendances = Attendance::with('rests')
             ->where('user_id', $id)
             ->whereBetween('punched_in_at', [$start, $end])
             ->orderBy('punched_in_at', 'asc')
             ->get();
 
-        // 2. CSVを生成してダウンロードさせるレスポンス
         return new StreamedResponse(function () use ($user, $displayMonth, $attendances) {
             $stream = fopen('php://output', 'w');
 
             // 文字化け防止（Excel用）
             stream_filter_append($stream, 'convert.iconv.utf-8/cp932//TRANSLIT');
 
-            // ヘッダー行
             fputcsv($stream, ['日付', '名前', '出勤', '退勤', '休憩時間', '勤務合計']);
 
             $formatTime = function ($minutes) {

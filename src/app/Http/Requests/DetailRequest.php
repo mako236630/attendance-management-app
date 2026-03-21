@@ -39,7 +39,7 @@ class DetailRequest extends FormRequest
             $outTime = $this->out_time;
 
             if ($inTime && $outTime && $inTime >= $outTime) {
-                $validator->errors()->add('time_error', '出勤時間が不適切な値です');
+                $validator->errors()->add('time_error', '出勤時間もしくは退勤時間が不適切な値です');
             }
 
             if ($this->rests) {

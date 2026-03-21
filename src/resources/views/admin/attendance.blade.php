@@ -9,9 +9,9 @@
         <h1>{{ $user->name }}さんの勤怠</h1>
 
         <div class="prev__next">
-            <a href="?month={{ $displayMonth->copy()->subMonth()->format('Y-m') }}">← 前日</a>
+            <a href="?month={{ $displayMonth->copy()->subMonth()->format('Y-m') }}">← 前月</a>
             <span><img src="{{ asset('images/calendar.png') }}" alt="logo">{{ $displayMonth->format('Y/m') }}</span>
-            <a href="?month={{ $displayMonth->copy()->addMonth()->format('Y-m') }}">翌日 →</a>
+            <a href="?month={{ $displayMonth->copy()->addMonth()->format('Y-m') }}">翌月 →</a>
         </div>
 
         <table class="attendance__staff-table">
@@ -35,7 +35,7 @@
                 @for ($date = $startDate->copy(); $date <= $endDate; $date->addDay())
                     @php
                         $attendance = $attendances->first(function ($item) use ($date) {
-                            return \Carbon\Carbon::parse($item->created_at)->isSameDay($date);
+                            return \Carbon\Carbon::parse($item->punched_in_at)->isSameDay($date);
                         });
 
                         $totalRestMinutes = 0;

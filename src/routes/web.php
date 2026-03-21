@@ -40,7 +40,7 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::get('/admin/attendance/{id}', [AdminattendancelistController::class, 'show'])->name('admin.show');
     Route::post('/admin/attendance/{id}', [AdminattendancelistController::class, 'updateRequest'])->name("admin.update");
     Route::get("/admin/staff/list", [AdminstafflistController::class, 'index'])->name("staff.list");
-    Route::get("/admin/atendance/staff/{id}", [AdminstafflistController::class, "show"])->name("attendance.staff");
+    Route::get("/admin/attendance/staff/{id}", [AdminstafflistController::class, "show"])->name("attendance.staff");
     Route::get("/stamp_correction_request/approve/{attendance_correct_request_id}", [AdminrequestController::class, "index"])->name('admin.request');
     Route::post("/stamp_correction_request/approve/{attendance_correct_request_id}", [AdminrequestController::class, "update"])->name('request.update');
 
