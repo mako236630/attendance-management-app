@@ -43,7 +43,9 @@
                     </td>
                 </tr>
 
-                @if ($attendance->rests->count() > 0 && !empty($attendance->rests->first()->rest_in_at))
+                @if (
+                    $attendance->rests->count() > 0 &&
+                        (!empty($attendance->rests->first()->rest_in_at) || !empty($attendance->rests->first()->requested_in_at)))
                     @foreach ($attendance->rests as $index => $rest)
                         <tr>
                             <th>

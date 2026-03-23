@@ -29,34 +29,36 @@
                 <tr>
                     <th>出勤・退勤</th>
                     <td>
-                         @if ($attendance->status === 1)
+                        @if ($attendance->status === 1)
                             <span class="if__in-at">{{ date('H:i', strtotime($attendance->requested_in_at)) }}</span>
                             <span class="range-tilde">～</span>
                             <span
                                 class="if__out-at">{{ $attendance->requested_out_at ? date('H:i', strtotime($attendance->requested_out_at)) : '' }}</span>
-                                @else
-                        <input type="time" name="in_time"
-                            value="{{ old('in_time', \Carbon\Carbon::parse($attendance->punched_in_at)->format('H:i')) }}">
-                        <span class="range-tilde">～</span>
-                        <input type="time" name="out_time"
-                            value="{{ old('out_time', \Carbon\Carbon::parse($attendance->punched_out_at)->format('H:i')) }}">
+                        @else
+                            <input type="time" name="in_time"
+                                value="{{ old('in_time', \Carbon\Carbon::parse($attendance->punched_in_at)->format('H:i')) }}">
+                            <span class="range-tilde">～</span>
+                            <input type="time" name="out_time"
+                                value="{{ old('out_time', \Carbon\Carbon::parse($attendance->punched_out_at)->format('H:i')) }}">
 
-                        <div class="error">
-                            @error('in_time')
-                                <p>{{ $message }}</p>
-                            @enderror
-                            @error('out_time')
-                                <p>{{ $message }}</p>
-                            @enderror
-                            @error('time_error')
-                                <p>{{ $message }}</p>
-                            @enderror
-                        </div>
+                            <div class="error">
+                                @error('in_time')
+                                    <p>{{ $message }}</p>
+                                @enderror
+                                @error('out_time')
+                                    <p>{{ $message }}</p>
+                                @enderror
+                                @error('time_error')
+                                    <p>{{ $message }}</p>
+                                @enderror
+                            </div>
                         @endif
                     </td>
                 </tr>
 
-                    @if ($attendance->rests->count() > 0 && !empty($attendance->rests->first()->rest_in_at))
+                @if (
+                    $attendance->rests->count() > 0 &&
+                        (!empty($attendance->rests->first()->rest_in_at) || !empty($attendance->rests->first()->requested_in_at)))
                     @foreach ($attendance->rests as $index => $rest)
                         <tr>
                             <th>
@@ -94,12 +96,21 @@
                     <tr>
                         <th>休憩</th>
                         <td>
-                            @if ($attendance->status == 1)
+                            @if ($attendance->status == 1 || $attendance->status == 2)
                                 <span>なし</span>
                             @else
-                                <input type="time" name="new_rest_in" value="00:00">
+                                <input type="time" name="new_rest_in" value="{{ old('new_rest_in', '00:00') }}">
                                 <span class="range-tilde">〜</span>
-                                <input type="time" name="new_rest_out" value="00:00">
+                                <input type="time" name="new_rest_out" value="{{ old('new_rest_out', '00:00') }}">
+
+                                <div class="error">
+                                    @error('new_rest_in')
+                                        <p>{{ $message }}</p>
+                                    @enderror
+                                    @error('new_rest_out')
+                                        <p>{{ $message }}</p>
+                                    @enderror
+                                </div>
                             @endif
                         </td>
                     </tr>
@@ -108,16 +119,16 @@
                 <tr>
                     <th>備考</th>
                     <td>
-                         @if ($attendance->status === 1)
+                        @if ($attendance->status === 1)
                             {{ $attendance->note }}
-                            @else
-                        <textarea name="note" rows="4">{{ old('note', $attendance->note) }}</textarea>
+                        @else
+                            <textarea name="note" rows="4">{{ old('note', $attendance->note) }}</textarea>
 
-                        <div class="error">
-                            @error('note')
-                                <p>{{ $message }}</p>
-                            @enderror
-                        </div>
+                            <div class="error">
+                                @error('note')
+                                    <p>{{ $message }}</p>
+                                @enderror
+                            </div>
                         @endif
                     </td>
                 </tr>

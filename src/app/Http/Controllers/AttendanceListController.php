@@ -33,7 +33,7 @@ class AttendanceListController extends Controller
 
         $attendance->view_in = date('H:i', strtotime($attendance->punched_in_at));
 
-        foreach($attendance->rests as $rest) {
+        foreach ($attendance->rests as $rest) {
             $rest->view_in = date('H:i', strtotime($rest->rest_in_at));
             $rest->view_out = $rest->rest_out_at ? date('H:i', strtotime($rest->rest_out_at)) : '';
         }
@@ -50,7 +50,7 @@ class AttendanceListController extends Controller
         $requested_out = $request->out_time ? $date . ' ' . $request->out_time . ':00' : null;
 
         $attendance->update([
-            'requested_in_at' =>$requested_in,
+            'requested_in_at' => $requested_in,
             'requested_out_at' => $requested_out,
             'note' => $request->note,
             'status' => 1,
@@ -64,6 +64,14 @@ class AttendanceListController extends Controller
                     'requested_out_at' => $data['out'] ? $date . ' ' . $data['out'] . ':00' : null,
                 ]);
             }
+        }
+
+        if ($request->filled('new_rest_in') && $request->new_rest_in !== '00:00') {
+            Rest::create([
+                'attendance_id' => $id,
+                'requested_in_at' => $date . ' ' . $request->new_rest_in . ':00',
+                'requested_out_at' => $request->new_rest_out ? $date . ' ' . $request->new_rest_out . ':00' : null,
+            ]);
         }
 
         return redirect()->route('attendance.update', ['id' => $id]);

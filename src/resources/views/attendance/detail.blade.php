@@ -60,7 +60,7 @@
                         @endif
                     </td>
                 </tr>
-                @if ($attendance->rests->count() > 0 && !empty($attendance->rests->first()->rest_in_at))
+                @if ($attendance->rests->count() > 0 && (!empty($attendance->rests->first()->rest_in_at) || !empty($attendance->rests->first()->requested_in_at)))
                     @foreach ($attendance->rests as $index => $rest)
                         <tr>
                             <th>
@@ -105,9 +105,18 @@
                             @if ($attendance->status == 1 || $attendance->status == 2)
                                 <span>なし</span>
                             @else
-                                <input type="time" name="new_rest_in" value="00:00">
+                                <input type="time" name="new_rest_in" value="{{ old('new_rest_in', '00:00') }}">
                                 <span class="range-tilde">〜</span>
-                                <input type="time" name="new_rest_out" value="00:00">
+                                <input type="time" name="new_rest_out" value="{{ old('new_rest_out', '00:00') }}">
+
+                                <div class="error">
+                                    @error("new_rest_in")
+                                        <p>{{ $message }}</p>
+                                    @enderror
+                                    @error("new_rest_out")
+                                        <p>{{ $message }}</p>
+                                    @enderror
+                                </div>
                             @endif
                         </td>
                     </tr>
@@ -136,7 +145,7 @@
                     <button class="update__button" type="submit">修正</button>
                 @elseif ($attendance->status === 1)
                     <p class="status__waiting">*承認待ちのため修正はできません。</p>
-                    @else
+                @else
                     <p class="status__waiting">*承認済み</p>
                 @endif
             </div>

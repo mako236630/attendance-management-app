@@ -66,6 +66,23 @@ class DetailRequest extends FormRequest
                     }
                 }
             }
+
+            $newIn = $this->new_rest_in;
+            $newOut = $this->new_rest_out;
+
+            if (($newIn && $newIn !== '00:00') || ($newOut && $newOut !== '00:00')) {
+
+                if ($newIn && ($newIn < $inTime || $newIn > $outTime)) {
+                    $validator->errors()->add('new_rest_in', '休憩時間が不適切な値です');
+                }
+                if ($newOut && $newOut > $outTime) {
+                    $validator->errors()->add('new_rest_out', '休憩時間もしくは退勤時間が不適切な値です');
+                }
+
+                if ($newIn && $newOut && $newIn >= $newOut) {
+                    $validator->errors()->add('new_rest_in', '休憩時間が不適切な値です');
+                }
+            }
         });
     }
 
