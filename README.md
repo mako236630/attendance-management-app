@@ -6,7 +6,7 @@
 
 **Dockerビルド** 
 
-- git clone 
+- git clone git@github.com:mako236630/coachtech-attendance-management.git
 - cd coachtech-attendance-management 
 - docker-compose up -d --build 
 
