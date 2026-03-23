@@ -39,7 +39,7 @@ h1 {
 
 .detail__table td {
     width: auto;
-    padding: 20px 40px;
+    padding: 10px 40px;
     white-space: nowrap;
     border-bottom: 2px solid #f0f0f0;
     font-size: 15px;
@@ -116,12 +116,15 @@ input {
     border: 1px solid #c3c1c1;
     border-radius: 3px;
     cursor: pointer;
+    margin-top: 30px;
 }
 
 textarea {
+    width: 68%;
     border: 1px solid #c3c1c1;
     border-radius: 3px;
     cursor: pointer;
+    margin-top: 30px;
 }
 
 .error {
@@ -173,7 +176,7 @@ textarea {
 
     .detail__table td {
         width: auto;
-        padding: 20px 40px;
+        padding: 10px 40px;
         height: 20px;
         white-space: nowrap;
         border-bottom: 2px solid #f0f0f0;
@@ -251,12 +254,15 @@ textarea {
         border: 1px solid #c3c1c1;
         border-radius: 3px;
         cursor: pointer;
+        margin-top: 30px;
     }
 
     textarea {
+        width: 68%;
         border: 1px solid #c3c1c1;
         border-radius: 3px;
         cursor: pointer;
+        margin-top: 30px;
     }
 
     .error {

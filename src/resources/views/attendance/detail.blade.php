@@ -40,11 +40,13 @@
                             <span
                                 class="if__out-at">{{ $attendance->punched_out_at ? date('H:i', strtotime($attendance->punched_out_at)) : '' }}</span>
                         @else
+                        <div class="input">
                             <input type="time" name="in_time"
                                 value="{{ old('in_time', \Carbon\Carbon::parse($attendance->punched_in_at)->format('H:i')) }}">
                             <span class="range-tilde">～</span>
                             <input type="time" name="out_time"
                                 value="{{ old('out_time', \Carbon\Carbon::parse($attendance->punched_out_at)->format('H:i')) }}">
+                        </div>
 
                             <div class="error">
                                 @error('in_time')
